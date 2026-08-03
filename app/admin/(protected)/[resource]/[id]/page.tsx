@@ -17,23 +17,29 @@ export default function EditResourcePage() {
   const params = useParams<{ resource: string; id: string }>();
   const router = useRouter();
   const resource = getResource(params.resource);
+  const resourceKey = resource?.key;
 
   const [record, setRecord] = useState<Row | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!resource) return;
+    if (!resourceKey) return;
+    let cancelled = false;
     (async () => {
       try {
-        setRecord(await getResourceRow(resource.key, params.id));
+        const row = await getResourceRow(resourceKey, params.id);
+        if (!cancelled) setRecord(row);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load");
+        if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load");
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     })();
-  }, [resource?.key, params.id]);
+    return () => {
+      cancelled = true;
+    };
+  }, [resourceKey, params.id]);
 
   if (!resource || resource.single || resource.readonly) {
     return <AdminNotFound />;

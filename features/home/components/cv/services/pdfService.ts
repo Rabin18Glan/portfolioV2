@@ -34,9 +34,9 @@ export const generateCV = async (elementId: string) => {
                     if (el.style) {
                         // Check common properties
                         ['color', 'backgroundColor', 'borderColor', 'fill', 'stroke'].forEach(prop => {
-                            // @ts-ignore
+                            // @ts-expect-error – element.style[prop] is dynamically indexed
                             if (el.style[prop]?.includes('oklch')) {
-                                // @ts-ignore
+                                // @ts-expect-error – element.style[prop] is dynamically indexed
                                 el.style[prop] = '#111827';
                             }
                         });

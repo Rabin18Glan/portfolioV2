@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import PropTypes from 'prop-types';
 import FilledButton from '@/components/Button/FilledButton';
 import StrokedButton from '@/components/Button/StrokedButton';

@@ -29,7 +29,7 @@ function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
-        <div className="cursor-pointer" onClick={(e: any) => handleScrollTo('home')(e)}>
+        <div className="cursor-pointer" onClick={handleScrollTo('home')}>
            {/* eslint-disable-next-line @next/next/no-img-element */}
            <img src="/RG.png" alt="RG logo" className="h-12 w-auto" />
         </div>

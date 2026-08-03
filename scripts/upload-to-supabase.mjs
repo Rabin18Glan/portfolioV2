@@ -20,7 +20,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import { readFileSync, existsSync } from "fs";
-import { readdir, stat } from "fs/promises";
+import { readdir } from "fs/promises";
 import { join, relative, extname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";

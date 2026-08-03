@@ -40,7 +40,7 @@ export default function TermsOfUse() {
                     <section>
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">4. Disclaimer</h3>
                         <p>
-                            The materials on this website are provided on an 'as is' basis. I make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability.
+                            The materials on this website are provided on an &apos;as is&apos; basis. I make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability.
                         </p>
                     </section>
 

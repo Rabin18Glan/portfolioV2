@@ -18,30 +18,40 @@ type Row = Record<string, unknown>;
 
 export default function ResourceListPage() {
   const params = useParams<{ resource: string }>();
-  const router = useRouter();
   const { search } = useAdminUI();
   const resource = getResource(params.resource);
+  const resourceKey = resource?.key;
 
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const load = useCallback(async () => {
-    if (!resource) return;
-    setLoading(true);
-    setError("");
+    if (!resourceKey) return;
     try {
-      setRows(await listResource(resource.key));
+      setRows(await listResource(resourceKey));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load");
-    } finally {
-      setLoading(false);
     }
-  }, [resource?.key]);
+  }, [resourceKey]);
 
   useEffect(() => {
-    void load();
-  }, [load]);
+    if (!resourceKey) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await listResource(resourceKey);
+        if (!cancelled) setRows(data);
+      } catch (err) {
+        if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [resourceKey]);
 
   // Header search filters the list over the configured search keys.
   const filtered = useMemo(() => {

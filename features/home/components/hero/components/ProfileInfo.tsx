@@ -39,7 +39,7 @@ function ProfileInfo() {
                 transition={{ delay: 0.2 }}
                 className="text-xl md:text-2xl font-bold text-primary-600 mb-2 uppercase tracking-widest"
             >
-                Hello, I'm
+                Hello, I&apos;m
             </motion.p>
 
             <motion.div

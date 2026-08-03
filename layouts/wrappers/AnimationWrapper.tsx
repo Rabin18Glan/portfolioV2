@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Target } from 'framer-motion';
 
 interface AnimationWrapperProps{
   children?:ReactNode,
@@ -11,8 +11,8 @@ interface AnimationWrapperProps{
 
 function AnimationWrapper({ children, className = '', animationClass = '', threshold = 0.1 }:AnimationWrapperProps) {
   
-  let initial: any = { opacity: 0 };
-  let animate: any = { opacity: 1 };
+  let initial: Target = { opacity: 0 };
+  let animate: Target = { opacity: 1 };
   
   if (animationClass.includes('slide-in-right')) {
      initial = { x: 100, opacity: 0 };

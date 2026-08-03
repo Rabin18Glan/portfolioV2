@@ -13,13 +13,13 @@ export default function Footer() {
                 {/* Upper Section: CTA & About */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
                     <div className="lg:col-span-5 space-y-6">
-                        <div className="cursor-pointer inline-block" onClick={(e: any) => handleScrollTo('home')(e)}>
+                        <div className="cursor-pointer inline-block" onClick={handleScrollTo('home')}>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src="/RG.png" alt="RG logo" className="h-20 w-auto" />
                         </div>
                         <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-md font-medium">
                             Crafting high-performance digital experiences with a focus on clean architecture, 
-                            scalability, and user-centric design. Let's build the future together.
+                            scalability, and user-centric design. Let&apos;s build the future together.
                         </p>
                         <div className="flex gap-4 pt-4">
                             <motion.a 

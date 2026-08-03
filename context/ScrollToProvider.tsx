@@ -7,7 +7,7 @@ import { pageList } from "@/app/pageList";
 
 interface ScrollToContextType {
   sectionsRefs: React.MutableRefObject<{ [key: string]: HTMLDivElement | null }> | null;
-  handleScrollTo: (page: string) => MouseEventHandler<HTMLAnchorElement|HTMLButtonElement>;
+  handleScrollTo: (page: string) => MouseEventHandler<HTMLElement>;
 }
 
 const ScrollToContext = createContext<ScrollToContextType>({
@@ -37,7 +37,7 @@ const ScrollToProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }
   }, [pathname]);
 
-  const handleScrollTo = (page: string): MouseEventHandler<HTMLAnchorElement|HTMLButtonElement> => {
+  const handleScrollTo = (page: string): MouseEventHandler<HTMLElement> => {
     return (event) => {
       event.preventDefault(); 
       
