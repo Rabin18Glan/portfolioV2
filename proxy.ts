@@ -42,6 +42,9 @@ export async function proxy(request: NextRequest) {
   // "slim" for admin/login, "full" for the public site.
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-route-type", isAdmin || isLogin ? "slim" : "full");
+  // Let server layouts know they're on the dashboard subdomain so they can
+  // redirect to the pretty paths (/login) instead of /admin/login.
+  requestHeaders.set("x-dashboard", onDashboard ? "1" : "0");
 
   // Rewrite the dashboard subdomain onto the admin section so Next renders
   // the admin pages (URL bar keeps the pretty path, e.g. /projects).
