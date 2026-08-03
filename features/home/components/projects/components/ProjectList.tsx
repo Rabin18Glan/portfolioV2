@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { fetchProjects, ProjectProps } from "../data/projectListData";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -72,10 +73,12 @@ function ProjectList() {
                                 <div className="relative flex flex-col bg-white dark:bg-dark-card/80 rounded-[calc(1.5rem-1px)] border border-gray-100 dark:border-dark-border overflow-hidden h-full">
                                     <div className="w-full overflow-hidden relative aspect-[4/3]">
                                         {project.images && project.images.length > 0 ? (
-                                            <img 
-                                                src={resolveImage(project.images[0])} 
-                                                alt={project.name} 
-                                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                                            <Image
+                                                src={resolveImage(project.images[0])}
+                                                alt={project.name}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                className="object-cover transform group-hover:scale-110 transition-transform duration-700"
                                             />
                                         ) : (
                                             <div className="w-full h-full flex flex-col items-center justify-center text-white bg-gradient-to-br from-primary-500 to-primary-700">

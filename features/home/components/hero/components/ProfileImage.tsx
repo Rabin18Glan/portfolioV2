@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -36,10 +37,13 @@ function ProfileImage() {
           <div className="relative p-2 rounded-full border-4 border-primary-500 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
             {/* Main Image Container */}
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden shadow-2xl">
-              <img 
-                alt='Rabin Glan' 
+              <Image
+                alt="Rabin Glan"
                 src={profileImage}
-                className="w-full h-full object-cover object-top bg-gray-50 dark:bg-dark-card" 
+                fill
+                priority
+                sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 400px"
+                className="object-cover object-top bg-gray-50 dark:bg-dark-card"
               />
               {/* Soft Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-transparent mix-blend-overlay"></div>

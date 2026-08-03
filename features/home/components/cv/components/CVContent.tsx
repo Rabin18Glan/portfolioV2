@@ -41,7 +41,7 @@ const CVContent = async () => {
     .reverse();
 
   const featured = projects
-    .filter((p) => p.project_type === "Professional" || p.name === "Nyauli")
+    .filter((p) => p.project_type === "Professional" || p.name === "Kinyoapp")
     .slice(0, 4);
 
   return (

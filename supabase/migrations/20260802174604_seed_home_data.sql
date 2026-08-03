@@ -128,12 +128,12 @@ values
   '[{"name":"Visit Site","link":"https://gahanastores.com/"}]'::jsonb
 ),
 (
-  12, 'Professional', 'Nyauli', 'SaaS Platform (Backend & DevOps)',
+  12, 'Professional', 'Kinyoapp', 'SaaS Platform (Backend & DevOps)',
   array['Microservices', 'GraphQL', 'Apollo Router', 'Express', 'Drizzle', 'MySQL', 'Kubernetes', 'Docker', 'Fission', 'cdk8s'],
   array['nyauli.png'],
   'Architected the backend and managed DevOps for a SaaS restaurant platform. Implemented a scalable microservices architecture using GraphQL Federation with Apollo Router and handled cloud orchestration via Kubernetes and Fission (Serverless).',
   array['Backend Microservices Development', 'GraphQL Federation & Apollo Router', 'Infrastructure as Code (cdk8s)', 'Database Management (Drizzle/MySQL)', 'Kubernetes Cluster & Fission Deployment'],
-  '[{"name":"Business Dashboard","link":"https://business.dev.retack.ai/"},{"name":"Storefront Demo","link":"https://truenaryrest-35ff.nyauli.com/"}]'::jsonb
+  '[{"name":"Business Dashboard","link":"https://business.dev.retack.ai/"},{"name":"Storefront Demo","link":"https://truenaryrest-35ff.kinyoapp.com/"}]'::jsonb
 );
 
 select setval(pg_get_serial_sequence('public.projects', 'id'), (select max(id) from public.projects));
@@ -212,7 +212,7 @@ select setval(pg_get_serial_sequence('public.timeline', 'id'), (select max(id) f
 -- ---------------------------------------------------------------------------
 insert into public.clients (id, name, logo, url) values
 (1, 'Kutumba Tech',       'https://avatars.githubusercontent.com/u/126733545?s=200&v=4', 'https://kutumbatech.com'),
-(2, 'Truenary Solutions', 'https://truenaryrest-35ff.nyauli.com/assets/favicon.ico',      'https://truenary.com'),
+(2, 'Truenary Solutions', 'https://truenaryrest-35ff.kinyoapp.com/assets/favicon.ico',      'https://truenary.com'),
 (3, 'US TechWorks Global', '',                                                            'https://ustechworks.com');
 
 select setval(pg_get_serial_sequence('public.clients', 'id'), (select max(id) from public.clients));
@@ -231,7 +231,7 @@ insert into public.reviews (id, client_name, review_text, rating, avatar, role, 
   2,
   'Truenary Solutions Team',
   'Outstanding work on GraphQL Federation, microservices, and Kubernetes orchestration. Rabin''s technical depth as a full stack developer is highly impressive.',
-  5, '', 'Tech Lead', 'Nyauli SaaS Platform'
+  5, '', 'Tech Lead', 'Kinyoapp SaaS Platform'
 );
 
 select setval(pg_get_serial_sequence('public.reviews', 'id'), (select max(id) from public.reviews));
