@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 // Logo lives in public/ — imported so next/og inlines it (no network dependency)
-import logo from "../../public/RG.png";
+import logo from "../public/RG.png";
 
 export const runtime = "edge";
 export const alt = "Rabin Glan — Full Stack Developer";
