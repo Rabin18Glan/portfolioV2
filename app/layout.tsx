@@ -4,6 +4,7 @@ import ScrollToProvider from "@/context/ScrollToProvider";
 import CVContent from "@/features/home/components/cv/components/CVContent";
 import ScrollToTop from "@/hooks/ScrollToTop";
 import { Footer, Header } from "@/layouts";
+import FloatingContactButtons from "@/components/Button/FloatingContactButtons";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -155,6 +156,9 @@ export default async function RootLayout({
               {children}
               <Footer />
             </div>
+
+            {/* Floating Phone and WhatsApp action buttons */}
+            <FloatingContactButtons />
 
             {/* Off-screen CV for PDF generation */}
             <div className="fixed -left-[9999px] top-0">
