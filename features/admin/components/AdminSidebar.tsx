@@ -7,6 +7,7 @@ import { RESOURCES } from "@/features/admin/config";
 import { createClient } from "@/utils/supabase/client";
 import { RESOURCE_ICONS } from "@/features/admin/icons";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import ForumIcon from "@mui/icons-material/Forum";
 import CloseIcon from "@mui/icons-material/Close";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -91,6 +92,13 @@ export default function AdminSidebar({
             active={pathname === "/admin"}
             icon={<DashboardIcon fontSize="small" />}
             label="Dashboard"
+            onClick={onClose}
+          />
+          <SidebarLink
+            href="/admin/chat"
+            active={pathname.startsWith("/admin/chat")}
+            icon={<ForumIcon fontSize="small" />}
+            label="Live Chat"
             onClick={onClose}
           />
           {RESOURCES.map((r) => {

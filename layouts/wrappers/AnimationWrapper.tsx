@@ -1,3 +1,4 @@
+"use client"
 import { ReactNode } from 'react';
 import { motion, type Target } from 'framer-motion';
 
