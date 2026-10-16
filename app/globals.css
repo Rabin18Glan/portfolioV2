@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Icons&display=swap');
+@import "devicon/devicon.min.css";
 @import "tailwindcss";
 
 /* Class-based dark mode: the app toggles the .dark class on <html>, so
@@ -49,104 +50,15 @@
   --color-primary-500: #b38e3c;
   --color-primary-600: var(--primary-600);
   --color-primary-700: var(--primary-700);
-  --color-primary-800: #8f6b26;
-  --color-primary-900: #6b5120;
-  --color-primary-950: #4a3a15;
+  --color-primary-800: #6b5524;
+  --color-primary-900: #473818;
 
-  /* Navy palette from the RG logo */
-  --color-navy-700: #223244;
-  --color-navy-800: #1b293a;
-  --color-navy-900: #0f1a27;
-  --color-navy-950: #070d15;
-
-  --color-dark-bg: #070d15;
-  --color-dark-card: #0f1a27;
-  --color-dark-border: #1b293a;
-  --color-dark-text: #f8fafc;
-  --color-custom-purple: #8f52dd;
-
-  --animate-bounce-500: bounce 0.5s;
-  --animate-slide-in-left: slideInLeft 1s ease;
-  --animate-slide-in-right: slideInRight 1s ease;
-  --animate-slide-in-up: slideInUp 1s ease;
-  --animate-slide-in-down: slideInDown 1s ease;
-
-  @keyframes slideInLeft {
-    0% { transform: translateX(-100%); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
-  }
-  @keyframes slideInRight {
-    0% { transform: translateX(100%); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
-  }
-  @keyframes slideInUp {
-    0% { transform: translateY(100%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-  @keyframes slideInDown {
-    0% { transform: translateY(-100%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  --breakpoint-mobile: 320px;
-  --breakpoint-tablet: 600px;
-  --breakpoint-laptop: 1280px;
-  --breakpoint-desktop: 1440px;
-
-  --font-cursive: cursive;
-}
-
-@utility text-stroke-1 {
-  -webkit-text-stroke-width: 1px;
-}
-@utility text-stroke-primary {
-  -webkit-text-stroke-color: var(--primary-600);
-}
-
-* {
-  scroll-behavior: smooth;
+  /* Dark mode backgrounds */
+  --color-dark-bg: #0f1a27;
+  --color-dark-card: #18283a;
+  --color-dark-border: #263c54;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  font-family: var(--font-outfit);
 }

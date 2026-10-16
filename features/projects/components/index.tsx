@@ -1,16 +1,12 @@
-import { PageWrapper } from '@/layouts'
-import ProjectList from './ProjectList';
+import ProjectList from "./ProjectList";
+import type { ProjectProps } from "../data/projectListData";
 
-function Projects() {
-    return (
-        <PageWrapper id='projects' title={'Projects'}>
-            <ProjectList />
-
-        </PageWrapper>
-    )
+interface ProjectsProps {
+  projects?: ProjectProps[];
 }
 
-export default Projects
+function Projects({ projects = [] }: ProjectsProps) {
+  return <ProjectList initialProjects={projects} />;
+}
 
-
-
+export default Projects;

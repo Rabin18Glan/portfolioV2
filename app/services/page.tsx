@@ -1,4 +1,5 @@
 import { Services } from "@/features/services";
+import { getCachedServices } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,10 +7,9 @@ export const metadata: Metadata = {
   description: "Explore the development, architectural, and engineering services offered by Rabin Glan.",
 };
 
-export default function ServicesPage() {
-  return (
-    <div className="bg-white dark:bg-dark-bg transition-colors duration-500">
-      <Services />
-    </div>
-  );
+export const revalidate = 3600;
+
+export default async function ServicesPage() {
+  const services = await getCachedServices();
+  return <Services services={services} />;
 }

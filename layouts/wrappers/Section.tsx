@@ -1,6 +1,4 @@
-"use client"
-import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { ReactNode } from "react";
 
 interface SectionProps {
   children: ReactNode;
@@ -9,22 +7,32 @@ interface SectionProps {
   containerClassName?: string;
   showGlow?: boolean;
   fullHeight?: boolean;
-  contentWidth?: 'constrained' | 'full';
+  contentWidth?: "constrained" | "full";
 }
 
-export default function Section({ 
-  children, 
-  id, 
-  className = '', 
-  containerClassName = '',
+export default function Section({
+  children,
+  id,
+  className = "",
+  containerClassName = "",
   showGlow = false,
   fullHeight = false,
-  contentWidth = 'constrained'
+  contentWidth = "constrained",
 }: SectionProps) {
+  let heightClass = "py-24 md:py-32";
+  if (fullHeight) {
+    heightClass = "min-h-screen flex items-center";
+  }
+
+  let widthClass = "px-0";
+  if (contentWidth === "constrained") {
+    widthClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
+  }
+
   return (
     <section
       id={id}
-      className={`relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-dark-bg ${fullHeight ? 'min-h-screen flex items-center' : 'py-24 md:py-32'} ${className}`}
+      className={`relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-dark-bg ${heightClass} ${className}`}
     >
       {showGlow && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -32,16 +40,10 @@ export default function Section({
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-[100px] animate-pulse delay-1000" />
         </div>
       )}
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`w-full ${contentWidth === 'constrained' ? 'max-w-7xl mx-auto px-6 md:px-12 lg:px-16' : 'px-0'} ${containerClassName}`}
-      >
+
+      <div className={`w-full transition-all duration-300 ${widthClass} ${containerClassName}`}>
         {children}
-      </motion.div>
+      </div>
     </section>
   );
 }

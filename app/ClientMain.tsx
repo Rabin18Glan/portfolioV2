@@ -5,7 +5,7 @@ import { pageList } from "./pageList";
 
 export default function ClientMain() {
   const { sectionsRefs } = useScrollToContext();
-  const homeSections = pageList.filter((page) => !page.isRoute);
+  const homeSections = pageList.filter((page) => !page.isRoute && page.pageSection !== null);
 
   return (
     <>

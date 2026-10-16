@@ -1,13 +1,15 @@
+import { PageWrapper } from "@/layouts";
+import TimelineMapping from "./TimelineMapping";
+import type { TimelineItemData } from "./TimelineMapping";
 
-import { PageWrapper } from "@/layouts"
-import TimelineMapping from "./TimelineMapping"
-
-
-export default function MyTimeline() {
-    return (
-        <PageWrapper id='timeline' title={'Timeline'} className='px-0'>
-            <TimelineMapping />
-        </PageWrapper>
-    )
+interface MyTimelineProps {
+  timelineItems?: TimelineItemData[];
 }
 
+export default function MyTimeline({ timelineItems = [] }: MyTimelineProps) {
+  return (
+    <PageWrapper id="timeline" title="Timeline" className="px-0">
+      <TimelineMapping timelineItems={timelineItems} />
+    </PageWrapper>
+  );
+}

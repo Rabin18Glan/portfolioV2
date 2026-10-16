@@ -1,8 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/utils/supabase/admin";
 import { requireAdmin, getResourceOrThrow, buildPayload } from "./helpers";
+import { revalidateResource } from "@/lib/data/revalidate";
 
 type Row = Record<string, unknown>;
 
@@ -52,7 +52,7 @@ export async function createResource(
   const { data, error } = await admin.from(resource.key).insert(payload).select().single();
 
   if (error) throw new Error(error.message);
-  revalidatePath(`/admin/${resource.key}`);
+  revalidateResource(resource.key);
   return data as Row;
 }
 
@@ -75,7 +75,7 @@ export async function updateResource(
     .single();
 
   if (error) throw new Error(error.message);
-  revalidatePath(`/admin/${resource.key}`);
+  revalidateResource(resource.key);
   return data as Row;
 }
 
@@ -87,5 +87,5 @@ export async function deleteResource(key: string, id: string): Promise<void> {
   const { error } = await admin.from(resource.key).delete().eq("id", id);
 
   if (error) throw new Error(error.message);
-  revalidatePath(`/admin/${resource.key}`);
+  revalidateResource(resource.key);
 }

@@ -1,12 +1,12 @@
-import { PageWrapper } from "@/layouts";
 import ServiceList from "./ServiceList";
+import type { ServiceDataProps } from "../data/ServicesData";
 
-function Services() {
-  return (
-    <PageWrapper id="services" title="Services">
-      <ServiceList />
-    </PageWrapper>
-  );
+interface ServicesProps {
+  services?: ServiceDataProps[];
+}
+
+function Services({ services = [] }: ServicesProps) {
+  return <ServiceList services={services} />;
 }
 
 export default Services;

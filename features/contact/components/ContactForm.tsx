@@ -36,7 +36,7 @@ function ContactForm() {
   };
 
   const inputClass =
-    "w-full py-4 px-6 rounded-2xl bg-gray-50 dark:bg-dark-card/50 border border-gray-200 dark:border-dark-border focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 outline-none transition-all dark:text-white";
+    "w-full py-2 px-6 rounded-2xl bg-gray-50 dark:bg-dark-card/50 border border-gray-200 dark:border-dark-border focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 outline-none transition-all dark:text-white";
 
   let submitButtonText = "Send Message";
   if (status === "sending") {
