@@ -13,7 +13,7 @@ export default function Logo({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src="/RG.png"
-      alt="RG logo"
+      alt="Rabin Glan - Full Stack Developer Logo"
       height={height}
       style={{ height, width: "auto" }}
       className={className}

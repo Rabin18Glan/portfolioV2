@@ -20,7 +20,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {hasImages && (
             <Image
               src={resolveImage(project.images[0])}
-              alt={project.name}
+              alt={`${project.name} - ${project.type} developed by Rabin Glan`}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -18,9 +18,9 @@ export default function ProfileInfo({
         Hello, I&apos;m
       </p>
 
-      <div className="mb-4">
+      <h1 className="mb-4">
         <Title title={name} />
-      </div>
+      </h1>
 
       <div className="flex items-center gap-3 mb-6">
         <div className="w-8 h-1 bg-primary-600 rounded-full" />
