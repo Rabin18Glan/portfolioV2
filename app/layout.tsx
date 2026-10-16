@@ -5,6 +5,7 @@ import CVContent from "@/features/home/components/cv/components/CVContent";
 import ScrollToTop from "@/hooks/ScrollToTop";
 import { Footer, Header } from "@/layouts";
 import FloatingContactButtons from "@/components/Button/FloatingContactButtons";
+import GoogleAnalytics from "@/components/Analytics/GoogleAnalytics";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -205,6 +206,7 @@ export default async function RootLayout({
       className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col">
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
