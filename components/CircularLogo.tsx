@@ -14,12 +14,12 @@ export default function CircularLogo({ className = "", logo }: CircularLogoProps
 
   return (
     <div
-      className={`relative rounded-full flex items-center justify-center h-14 w-14 p-2 bg-white dark:bg-dark-card shadow-md transition-transform duration-200 hover:scale-110 ${className}`}
+      className={`relative rounded-full flex items-center justify-center h-16 w-16 p-2 bg-white dark:bg-dark-card shadow-md transition-transform duration-200 hover:scale-110 ${className}`}
     >
-      {isDevicon && <i className={`${logo} text-2xl leading-none`} title={`${logoName} icon`}></i>}
+      {isDevicon && <i className={`${logo} text-4xl leading-none`} title={`${logoName} icon`}></i>}
       {!isDevicon && (
         <Image
-          className="object-contain w-full h-full drop-shadow-sm p-1"
+          className="object-scale-down w-full h-full drop-shadow-sm p-1 rounded-full"
           src={logo}
           alt={`${logoName} logo - skill of Rabin Glan`}
           fill

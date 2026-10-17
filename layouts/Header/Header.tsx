@@ -61,21 +61,36 @@ export default function Header() {
             .map((page) => {
               const isActive = checkIsActive(page);
 
-              let underlineClass = "scale-x-0 group-hover:scale-x-100 opacity-60";
+              let filledPillClass =
+                "w-0 opacity-0 group-hover:w-6 group-hover:opacity-100 transition-all duration-300";
+              let outlinedPillClass =
+                "w-0 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-300 delay-75";
+
               if (isActive) {
-                underlineClass = "scale-x-100 opacity-100";
+                filledPillClass =
+                  "w-6 opacity-100 group-hover:w-8 transition-all duration-300";
+                outlinedPillClass =
+                  "w-4 opacity-100 group-hover:w-6 transition-all duration-300";
               }
 
               return (
                 <button
                   key={page.id}
                   onClick={handleScrollTo(page.page)}
-                  className="hover:scale-110 transition-transform relative group px-2 py-1 cursor-pointer"
+                  className="hover:scale-105 transition-transform inline-flex flex-col items-start group px-2 py-1 cursor-pointer"
                 >
                   <Title title={page.title} fontSize="1.5rem" />
                   <span
-                    className={`absolute bottom-0 left-2 right-2 h-0.5 bg-primary-600 rounded-full transition-all duration-300 ${underlineClass}`}
-                  />
+                    className="flex items-center gap-0.5 mt-1 h-1.5"
+                    aria-hidden="true"
+                  >
+                    <span
+                      className={`h-1.5 rounded-full bg-primary-600 shadow-[0_0_8px_rgba(27,41,58,0.25)] dark:shadow-[0_0_10px_rgba(200,162,75,0.35)] ${filledPillClass}`}
+                    />
+                    <span
+                      className={`h-1.5 rounded-full border border-primary-600 bg-transparent ${outlinedPillClass}`}
+                    />
+                  </span>
                 </button>
               );
             })}
@@ -140,7 +155,7 @@ export default function Header() {
 
                 let mobileActiveClass = "hover:bg-gray-50 dark:hover:bg-dark-card/50";
                 if (isActive) {
-                  mobileActiveClass = "bg-primary-50 dark:bg-primary-950/40 border-l-4 border-primary-600 font-bold";
+                  mobileActiveClass = "bg-primary-50 dark:bg-primary-950/40 font-bold";
                 }
 
                 return (
@@ -152,10 +167,13 @@ export default function Header() {
                     }}
                     className={`block w-full text-left px-3 py-3 rounded-xl transition-all cursor-pointer ${mobileActiveClass}`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="inline-flex flex-col items-start">
                       <Title title={page.title} fontSize="1.5rem" />
                       {isActive && (
-                        <span className="w-2 h-2 rounded-full bg-primary-600 mr-2" />
+                        <span className="flex items-center gap-1 mt-1.5" aria-hidden="true">
+                          <span className="w-6 h-1.5 rounded-full bg-primary-600 shadow-sm" />
+                          <span className="w-4 h-1.5 rounded-full border border-primary-600 bg-transparent" />
+                        </span>
                       )}
                     </div>
                   </button>

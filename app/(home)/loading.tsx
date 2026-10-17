@@ -41,9 +41,12 @@ function AboutSkeleton() {
     <section className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-dark-bg py-24 md:py-32">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex flex-col items-center gap-16 animate-pulse">
         {/* Title matching TitleUnderLined */}
-        <div className="flex flex-col items-center gap-2">
+        <div className="inline-flex flex-col items-start gap-2">
           <div className="h-12 w-48 bg-gray-200 dark:bg-gray-700/60 rounded-xl" />
-          <div className="w-24 h-1 bg-primary-600/50 rounded-full" />
+          <div className="flex items-center gap-1.5">
+            <div className="w-9 h-2 rounded-full bg-primary-600/50" />
+            <div className="w-7 h-2 rounded-full border-2 border-primary-600/50 bg-transparent" />
+          </div>
         </div>
 
         {/* Content paragraphs */}
@@ -70,9 +73,12 @@ function TimelineSkeleton() {
     <section className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-dark-bg py-24 md:py-32">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 flex flex-col items-center gap-16 animate-pulse">
         {/* Title matching TitleUnderLined */}
-        <div className="flex flex-col items-center gap-2">
+        <div className="inline-flex flex-col items-start gap-2">
           <div className="h-12 w-44 bg-gray-200 dark:bg-gray-700/60 rounded-xl" />
-          <div className="w-24 h-1 bg-primary-600/50 rounded-full" />
+          <div className="flex items-center gap-1.5">
+            <div className="w-9 h-2 rounded-full bg-primary-600/50" />
+            <div className="w-7 h-2 rounded-full border-2 border-primary-600/50 bg-transparent" />
+          </div>
         </div>
 
         {/* Timeline body matching TimelineMapping */}
