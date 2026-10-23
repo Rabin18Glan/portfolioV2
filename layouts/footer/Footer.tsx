@@ -8,7 +8,7 @@ export default function Footer() {
   const pathname = usePathname();
   const { handleScrollTo } = useScrollToContext();
 
-  if (pathname === "/chat") {
+  if (pathname === "/chat" || pathname === "/resume") {
     return null;
   }
 

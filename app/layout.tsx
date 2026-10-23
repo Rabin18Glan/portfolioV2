@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
 import { ColorModeProvider } from "@/context/colorModeContext";
 import ScrollToProvider from "@/context/ScrollToProvider";
-import CVContent from "@/features/home/components/cv/components/CVContent";
 import ScrollToTop from "@/hooks/ScrollToTop";
 import { Footer, Header } from "@/layouts";
 import FloatingContactButtons from "@/components/Button/FloatingContactButtons";
@@ -222,11 +221,6 @@ export default async function RootLayout({
 
             {/* Floating Phone and WhatsApp action buttons */}
             <FloatingContactButtons />
-
-            {/* Off-screen CV for PDF generation */}
-            <div className="fixed -left-[9999px] top-0">
-              <CVContent />
-            </div>
           </ScrollToProvider>
         </ColorModeProvider>
       </body>

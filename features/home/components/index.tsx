@@ -9,6 +9,7 @@ interface MainPageProps {
     title?: string;
     description?: string;
     profile_image?: string;
+    cv_url?: string;
   } | null;
   timelineItems?: TimelineItemData[];
 }

@@ -14,7 +14,7 @@ export default function FloatingContactButtons() {
   const pathname = usePathname();
 
   // Hide on /chat page (clean chat workspace) and admin dashboard routes
-  if (pathname === "/chat" || pathname.startsWith("/admin")) {
+  if (pathname === "/chat" || pathname === "/resume" || pathname.startsWith("/admin")) {
     return null;
   }
 

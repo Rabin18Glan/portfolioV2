@@ -23,7 +23,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (pathname === "/chat") {
+  if (pathname === "/chat" || pathname === "/resume") {
     return null;
   }
 

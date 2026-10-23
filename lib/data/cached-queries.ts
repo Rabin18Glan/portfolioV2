@@ -4,6 +4,9 @@ import { CACHE_TAGS, DEFAULT_REVALIDATE_SECONDS } from "./cache-tags";
 import type { ServiceDataProps } from "@/features/services/data/ServicesData";
 import type { ProjectProps } from "@/features/projects/data/projectListData";
 import type { TimelineItemData } from "@/features/home/components/timeline/components/TimelineMapping";
+import { ResumeData, DEFAULT_RESUME_DATA } from "./resume-data";
+
+export type { ResumeData };
 
 export interface HeroData {
   id?: number;
@@ -164,6 +167,38 @@ export const getCachedTimeline = unstable_cache(
   ["timeline-cache-key"],
   {
     tags: [CACHE_TAGS.TIMELINE, CACHE_TAGS.HOME],
+    revalidate: DEFAULT_REVALIDATE_SECONDS,
+  }
+);
+
+/**
+ * Next Cache wrapper for Resume data.
+ * Revalidates every hour or on-demand via CACHE_TAGS.RESUME.
+ */
+export const getCachedResume = unstable_cache(
+  async (): Promise<ResumeData> => {
+    try {
+      const supabase = createAdminClient();
+      const { data, error } = await supabase
+        .from("resume")
+        .select("*")
+        .eq("is_active", true)
+        .order("id", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (error || !data) {
+        return DEFAULT_RESUME_DATA;
+      }
+      return data as ResumeData;
+    } catch (err) {
+      console.error("Error in getCachedResume:", err);
+      return DEFAULT_RESUME_DATA;
+    }
+  },
+  ["resume-cache-key"],
+  {
+    tags: [CACHE_TAGS.RESUME],
     revalidate: DEFAULT_REVALIDATE_SECONDS,
   }
 );

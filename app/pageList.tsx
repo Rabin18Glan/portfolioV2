@@ -17,6 +17,7 @@ export const pageList: Page[] = [
   { id: "services", title: "Services", page: "services", pageSection: null, showInHeader: true, isRoute: true },
   { id: "projects", title: "Projects", page: "projects", pageSection: null, showInHeader: true, isRoute: true },
   { id: "contact", title: "Contact", page: "contact", pageSection: <Contact />, showInHeader: true, isRoute: true },
+  { id: "resume", title: "Resume", page: "resume", pageSection: null, showInHeader: false, isRoute: true },
   { id: "chat", title: "Chat", page: "chat", pageSection: null, showInHeader: false, isRoute: true },
   { id: "privacy", title: "Privacy Policy", page: "privacy", pageSection: <PrivacyPolicy />, showInHeader: false, isRoute: true },
   { id: "terms", title: "Terms of Use", page: "terms", pageSection: <TermsOfUse />, showInHeader: false, isRoute: true },
