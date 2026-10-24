@@ -86,7 +86,7 @@ function TimelineSkeleton() {
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 dark:bg-gray-700/50 transform md:-translate-x-1/2 rounded-full" />
 
           <div className="text-center mb-8 relative z-20">
-            <div className="inline-block h-8 w-32 rounded-full bg-primary-100 dark:bg-primary-500/15 border border-primary-300/40" />
+            <div className="inline-block h-4 w-28 bg-primary-600/30 rounded" />
           </div>
 
           {items.map((id, index) => {
@@ -103,7 +103,7 @@ function TimelineSkeleton() {
               <div key={id} className={`relative flex md:items-center ${directionClass}`}>
                 <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${alignmentClass}`}>
                   <div className="p-6 bg-white dark:bg-dark-card/90 rounded-2xl border border-gray-100 dark:border-dark-border shadow-md space-y-3">
-                    <div className="h-5 w-24 bg-primary-100 dark:bg-primary-500/20 rounded-full" />
+                    <div className="h-4 w-20 bg-primary-600/30 rounded" />
                     <div className="h-6 w-3/4 bg-gray-200 dark:bg-gray-700/60 rounded" />
                     <div className="h-4 w-full bg-gray-200 dark:bg-gray-700/40 rounded" />
                   </div>

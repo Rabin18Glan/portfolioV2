@@ -21,12 +21,16 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function Page() {
-  const { heroData, timelineItems } = await getCachedHomeData();
+  const { heroData, aboutData, timelineItems } = await getCachedHomeData();
 
   return (
     <main className="flex-grow">
       <div id="home" className="bg-white dark:bg-dark-bg transition-colors duration-500">
-        <MainPage heroData={heroData} timelineItems={timelineItems} />
+        <MainPage
+          heroData={heroData}
+          aboutData={aboutData}
+          timelineItems={timelineItems}
+        />
       </div>
     </main>
   );

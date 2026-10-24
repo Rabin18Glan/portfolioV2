@@ -39,6 +39,10 @@ const RESOURCE_REVALIDATION_MAP: Record<string, RevalidationTarget> = {
     tags: [CACHE_TAGS.RESUME],
     paths: ["/resume", "/admin/resume"],
   },
+  contents: {
+    tags: [CACHE_TAGS.CONTENTS, CACHE_TAGS.HOME],
+    paths: ["/", "/admin/contents"],
+  },
 };
 
 /**

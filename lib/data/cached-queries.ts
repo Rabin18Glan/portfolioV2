@@ -17,6 +17,17 @@ export interface HeroData {
   cv_url?: string;
 }
 
+export interface AboutData {
+  id?: number;
+  section?: string;
+  title?: string;
+  subtitle?: string;
+  body?: string;
+  image_url?: string;
+  metadata?: Record<string, unknown>;
+  is_published?: boolean;
+}
+
 type RawServiceRow = {
   title: string;
   skills?: string[] | null;
@@ -112,19 +123,85 @@ export const getCachedProjects = unstable_cache(
 
 /**
  * Next Cache wrapper for Hero data.
- * Revalidates every hour or on-demand via CACHE_TAGS.HERO.
+ * Intelligently merges public.hero and public.contents (section='hero')
+ * so edits made under either Admin Hero or Admin Site Content (contents) are respected.
+ * Revalidates every hour or on-demand.
  */
 export const getCachedHero = unstable_cache(
   async (): Promise<HeroData | null> => {
     try {
       const supabase = createAdminClient();
-      const { data, error } = await supabase
-        .from("hero")
-        .select("*")
-        .maybeSingle();
 
-      if (error) return null;
-      return (data as HeroData) ?? null;
+      const [heroRes, contentRes] = await Promise.all([
+        supabase.from("hero").select("*").maybeSingle(),
+        supabase
+          .from("contents")
+          .select("*")
+          .eq("section", "hero")
+          .eq("is_published", true)
+          .maybeSingle(),
+      ]);
+
+      const heroRow = heroRes.data as (HeroData & { updated_at?: string }) | null;
+      const contentRow = contentRes.data as {
+        title?: string;
+        subtitle?: string;
+        body?: string;
+        image_url?: string;
+        metadata?: Record<string, unknown>;
+        updated_at?: string;
+      } | null;
+
+      // Determine which table has the more recent update
+      const heroUpdatedAt = heroRow?.updated_at
+        ? new Date(heroRow.updated_at).getTime()
+        : 0;
+      const contentUpdatedAt = contentRow?.updated_at
+        ? new Date(contentRow.updated_at).getTime()
+        : 0;
+
+      const useContent = Boolean(
+        contentRow && (contentUpdatedAt >= heroUpdatedAt || !heroRow)
+      );
+
+      const name =
+        (contentRow?.metadata?.name as string) ||
+        heroRow?.name ||
+        "Rabin Glan";
+
+      const title =
+        (useContent
+          ? contentRow?.subtitle || (contentRow?.metadata?.title as string)
+          : null) ||
+        heroRow?.title ||
+        contentRow?.subtitle ||
+        "Full Stack Developer";
+
+      const description =
+        (useContent ? contentRow?.body : null) ||
+        heroRow?.description ||
+        contentRow?.body ||
+        "";
+
+      const profileImage =
+        (useContent ? contentRow?.image_url : null) ||
+        heroRow?.profile_image ||
+        contentRow?.image_url ||
+        "";
+
+      const cvUrl =
+        (contentRow?.metadata?.cv_url as string) ||
+        heroRow?.cv_url ||
+        "/MyCV.pdf";
+
+      return {
+        id: heroRow?.id ?? 1,
+        name,
+        title,
+        description,
+        profile_image: profileImage,
+        cv_url: cvUrl,
+      };
     } catch (err) {
       console.error("Error in getCachedHero:", err);
       return null;
@@ -132,7 +209,11 @@ export const getCachedHero = unstable_cache(
   },
   ["hero-cache-key"],
   {
-    tags: [CACHE_TAGS.HERO, CACHE_TAGS.HOME],
+    tags: [
+      CACHE_TAGS.HERO,
+      CACHE_TAGS.CONTENTS,
+      CACHE_TAGS.HOME,
+    ],
     revalidate: DEFAULT_REVALIDATE_SECONDS,
   }
 );
@@ -204,15 +285,48 @@ export const getCachedResume = unstable_cache(
 );
 
 /**
+ * Next Cache wrapper for About / Contents data.
+ * Revalidates every hour or on-demand via CACHE_TAGS.CONTENTS / CACHE_TAGS.HOME.
+ */
+export const getCachedAbout = unstable_cache(
+  async (): Promise<AboutData | null> => {
+    try {
+      const supabase = createAdminClient();
+      const { data, error } = await supabase
+        .from("contents")
+        .select("*")
+        .eq("section", "about")
+        .eq("is_published", true)
+        .order("id", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (error) return null;
+      return (data as AboutData) ?? null;
+    } catch (err) {
+      console.error("Error in getCachedAbout:", err);
+      return null;
+    }
+  },
+  ["about-content-cache-key"],
+  {
+    tags: [CACHE_TAGS.CONTENTS, CACHE_TAGS.HOME],
+    revalidate: DEFAULT_REVALIDATE_SECONDS,
+  }
+);
+
+/**
  * Fetches all home page data using the respective cached queries.
  */
 export async function getCachedHomeData(): Promise<{
   heroData: HeroData | null;
+  aboutData: AboutData | null;
   timelineItems: TimelineItemData[];
 }> {
-  const [heroData, timelineItems] = await Promise.all([
+  const [heroData, aboutData, timelineItems] = await Promise.all([
     getCachedHero(),
+    getCachedAbout(),
     getCachedTimeline(),
   ]);
-  return { heroData, timelineItems };
+  return { heroData, aboutData, timelineItems };
 }

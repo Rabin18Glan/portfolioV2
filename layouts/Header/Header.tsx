@@ -55,7 +55,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-6 md:mr-14">
           {pageList
             .filter((p) => p.showInHeader)
             .map((page) => {
@@ -103,14 +103,10 @@ export default function Header() {
             <Chat />
             <span>Start Conversation</span>
           </Link>
-
-          <div className="pl-4">
-            <ChangeModeButton />
-          </div>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
+        {/* Mobile Menu Button & Mode Toggle */}
+        <div className="md:hidden flex items-center gap-3">
           <ChangeModeButton />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -142,6 +138,11 @@ export default function Header() {
             </svg>
           </button>
         </div>
+      </div>
+
+      {/* Desktop: Dark/Light Mode Button at Top Right Corner */}
+      <div className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2">
+        <ChangeModeButton />
       </div>
 
       {/* Mobile Navigation Dropdown */}

@@ -1,14 +1,10 @@
 import HeroContainer from "./HeroContainer";
 import ProfileImage from "./ProfileImage";
 import ProfileInfo from "./ProfileInfo";
+import type { HeroData } from "@/lib/data/cached-queries";
 
 interface HeroProps {
-  heroData?: {
-    name?: string;
-    title?: string;
-    description?: string;
-    profile_image?: string;
-  } | null;
+  heroData?: HeroData | null;
 }
 
 export default function Hero({ heroData }: HeroProps) {

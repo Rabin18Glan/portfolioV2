@@ -19,10 +19,10 @@ export default function TimelineMapping({ timelineItems }: TimelineMappingProps)
       {/* Vertical Line - Gold Gradient */}
       <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-800 dark:from-primary-500/60 dark:via-primary-600/60 dark:to-primary-900 transform md:-translate-x-1/2 rounded-full opacity-70"></div>
 
-      <div className="text-center mb-8 relative z-20">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-primary-100 dark:bg-primary-500/15 text-primary-700 dark:text-primary-300 border border-primary-300/60 dark:border-primary-500/30 text-sm font-bold uppercase tracking-widest shadow-sm">
+      <div className="md:text-center mb-8 relative z-20 bg-white py-3">
+        <p className="text-sm font-bold  text-primary-600 dark:text-primary-400">
           My Journey
-        </span>
+        </p>
       </div>
 
       {timelineItems.map((data, index) => {
@@ -44,7 +44,7 @@ export default function TimelineMapping({ timelineItems }: TimelineMappingProps)
             <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${alignmentClass}`}>
               <div className="group relative rounded-2xl p-px bg-gradient-to-br from-primary-400/60 via-gray-200/60 to-primary-600/40 dark:from-primary-500/40 dark:via-dark-border dark:to-primary-700/30 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div className="relative p-6 bg-white dark:bg-dark-card/90 rounded-[calc(1rem-1px)] border border-gray-100 dark:border-dark-border overflow-hidden">
-                  <span className="relative inline-block px-3 py-1 mb-3 text-xs font-bold tracking-wider text-primary-700 dark:text-primary-300 uppercase bg-primary-100 dark:bg-primary-500/15 border border-primary-300/60 dark:border-primary-500/30 rounded-full">
+                  <span className="relative block text-xs md:text-sm font-semibold tracking-wider text-primary-600 dark:text-primary-400 uppercase mb-1.5">
                     {data.date}
                   </span>
                   <h3 className="relative text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
